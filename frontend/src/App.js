@@ -5,7 +5,7 @@ import Search from './components/Search';
 const App = () => {
   return (
     <div className="App">
-      <Header title="I-gallery" />
+      <Header title="Ї-gallery" />
       <Search />
     </div>
   );
