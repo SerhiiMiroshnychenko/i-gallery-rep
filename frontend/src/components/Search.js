@@ -1,6 +1,16 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
+const buttonStyle = {
+  backgroundColor: 'steelblue',
+  color: 'white',
+  transition: 'background-color 0.3s',
+};
+
+const buttonHoverStyle = {
+  backgroundColor: 'midnightblue',
+};
+
 const Search = ({ word, setWord, handleSubmit }) => {
   return (
     <Container className="mt-4">
@@ -17,7 +27,19 @@ const Search = ({ word, setWord, handleSubmit }) => {
                 />
               </Col>
               <Col>
-                <Button variant="primary" type="submit">
+                <Button
+                  style={buttonStyle}
+                  variant="primary"
+                  type="submit"
+                  onMouseEnter={(e) =>
+                    (e.target.style.backgroundColor =
+                      buttonHoverStyle.backgroundColor)
+                  }
+                  onMouseLeave={(e) =>
+                    (e.target.style.backgroundColor =
+                      buttonStyle.backgroundColor)
+                  }
+                >
                   ПОШУК
                 </Button>
               </Col>

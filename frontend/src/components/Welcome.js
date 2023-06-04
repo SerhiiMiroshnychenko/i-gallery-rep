@@ -19,6 +19,13 @@ const buttonContainerStyle = {
 
 const buttonStyle = {
   margin: '10px',
+  backgroundColor: 'steelblue',
+  color: 'white',
+  transition: 'background-color 0.3s',
+};
+
+const buttonHoverStyle = {
+  backgroundColor: 'midnightblue',
 };
 
 const headingStyleBottom = {
@@ -31,11 +38,11 @@ const headingStyleTop = {
 
 const Welcome = () => (
   <Jumbotron style={jumbotronStyle}>
-    <h3 style={headingStyleBottom}>
+    <h2 style={headingStyleBottom}>
       <i>
         <b>I - gallery</b>
       </i>
-    </h3>
+    </h2>
     <p>Це простий додаток, який отримує фотографії за допомогою Unspash API.</p>
     <p>Щоб почати, введіть будь-який пошуковий термін у поле пошуку.</p>
     <div>
@@ -51,6 +58,13 @@ const Welcome = () => (
             href="https://github.com/SerhiiMiroshnychenko/i-gallery-rep"
             target="_blank"
             style={buttonStyle}
+            onMouseEnter={(e) =>
+              (e.target.style.backgroundColor =
+                buttonHoverStyle.backgroundColor)
+            }
+            onMouseLeave={(e) =>
+              (e.target.style.backgroundColor = buttonStyle.backgroundColor)
+            }
           >
             GitHub додатку
           </Button>
@@ -59,6 +73,13 @@ const Welcome = () => (
             href="https://www.linkedin.com/in/serhii-miroshnychenko-mariupol/"
             target="_blank"
             style={buttonStyle}
+            onMouseEnter={(e) =>
+              (e.target.style.backgroundColor =
+                buttonHoverStyle.backgroundColor)
+            }
+            onMouseLeave={(e) =>
+              (e.target.style.backgroundColor = buttonStyle.backgroundColor)
+            }
           >
             LinkedIn автора
           </Button>
