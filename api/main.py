@@ -19,11 +19,20 @@ app.config['DEBUG'] = DEBUG
 
 @app.route("/")
 def hello_world():
+    """
+    Hello World response to the frontend
+    """
     return "<p>Hello, World!</p>"
 
 
 @app.route("/new-image")
 def new_image():
+    """
+    Receive a request from the frontend,
+    make a request to the Unsplash api,
+    receive a response from the Unsplash api
+    and send it to the frontend"""
+
     # Отримуємо 'query' від клієнта
     word = request.args.get('query')
 
@@ -39,13 +48,15 @@ def new_image():
     response = requests.get(
         url=UNSPLASH_URL,
         headers=headers,
-        params=params
+        params=params,
+        timeout=5,
     )  # Відправляємо запит на Unsplash API, та отримуємо 'response'
 
     return response.json()
 
 
 def main():
+    """To run Flask application"""
     if not UNSPLASH_KEY:
         raise EnvironmentError(
             'Please create .env.local file and insert there UNSPLASH_KEY')
