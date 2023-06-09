@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Nav } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 const ImageCard = ({ image, deleteImage }) => {
   return (
