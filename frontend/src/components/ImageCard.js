@@ -22,7 +22,7 @@ const ImageCard = ({ image, deleteImage }) => {
         <Card.Body>
           <Card.Title>ERROR</Card.Title>
           <Card.Text>Картинка не знайдена</Card.Text>
-          <Button variant="primary" onClick={() => deleteImage(image.id)}>
+          <Button variant="warning" onClick={() => deleteImage(image.id)}>
             Delete
           </Button>
         </Card.Body>
