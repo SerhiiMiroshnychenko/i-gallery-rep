@@ -45,27 +45,14 @@ def new_image():
         'query': word
     }  # Формуємо значення 'query'
 
-    def get_request():
-        return requests.get(
-            url=UNSPLASH_URL,
-            headers=headers,
-            params=params,
-            timeout=5)  # Відправляємо запит на Unsplash API, та отримуємо 'response'
-
-    response = get_request()
-
+    response = requests.get(
+        url=UNSPLASH_URL,
+        headers=headers,
+        params=params,
+        timeout=5)  # Відправляємо запит на Unsplash API, та отримуємо 'response'
     result = response.json()
 
-    if response.json() == {'errors': ['No photos found.']}:
-        params = {
-            'query': ''
-        }  # Формуємо значення 'query'
-
-        response = get_request()
-        result = response.json()
-        result['description'] = f'ERROR: No photos found for word "{word}".'
-
-    return result
+    return result if result != {'errors': ['No photos found.']} else {}
 
 
 def main():
