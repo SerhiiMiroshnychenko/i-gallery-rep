@@ -50,6 +50,7 @@ def new_image():
         headers=headers,
         params=params,
         timeout=5)  # Відправляємо запит на Unsplash API, та отримуємо 'response'
+    print(f'{word = }')
     result = response.json()
 
     return result if result != {'errors': ['No photos found.']} else {}
@@ -64,4 +65,5 @@ def main():
 
 
 if __name__ == '__main__':
+    print('Hi!')
     main()
