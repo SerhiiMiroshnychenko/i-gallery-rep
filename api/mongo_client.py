@@ -10,5 +10,6 @@ mongo_client = MongoClient(
     host=MONGO_URL,
     username=MONGO_USERNAME,
     password=MONGO_PASSWORD,
-    port=MONGO_PORT
+    port=int(MONGO_PORT)
 )
+
