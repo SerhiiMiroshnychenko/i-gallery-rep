@@ -65,10 +65,13 @@ def new_image():
 
 @app.route('/images', methods=['GET', 'POST'])
 def images():
+    """
+    Endpoint for GET and POST requests
+    """
     if request.method == 'GET':
         # read images from the database
-        images = images_collection.find({})
-        return jsonify(list(images))
+        images_ = images_collection.find({})
+        return jsonify(list(images_))
     if request.method == 'POST':
         # save image to the database
         # image = json.load(request.data)
