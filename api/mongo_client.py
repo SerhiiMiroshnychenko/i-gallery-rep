@@ -12,4 +12,3 @@ mongo_client = MongoClient(
     password=MONGO_PASSWORD,
     port=int(MONGO_PORT)
 )
-
