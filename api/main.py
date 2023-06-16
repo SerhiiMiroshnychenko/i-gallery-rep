@@ -45,11 +45,13 @@ def new_image():
         'query': word
     }  # Формуємо значення 'query'
 
+# Відправляємо запит на Unsplash API, та отримуємо 'response'
     response = requests.get(
         url=UNSPLASH_URL,
         headers=headers,
         params=params,
-        timeout=5)  # Відправляємо запит на Unsplash API, та отримуємо 'response'
+        timeout=5)
+
     print(f'{word = }')
     result = response.json()
 
@@ -65,5 +67,4 @@ def main():
 
 
 if __name__ == '__main__':
-    print('Hi!')
     main()
