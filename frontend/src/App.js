@@ -39,8 +39,24 @@ const App = () => {
     setWord('');
   };
 
-  const handleDeleteImage = (id) => {
+  const handleRemoveImage = (id) => {
     setImages(images.filter((image) => image.id !== id));
+  };
+
+  const handleDeleteImage = async (id) => {
+    const imageToBeDeleted = images.filter((image) => image.id === id);
+    imageToBeDeleted.deleted = true;
+    try {
+      const result = await axios.delete(
+        `${API_URL}/images/${id}`,
+        imageToBeDeleted
+      );
+      if (result.data?.deleted_id) {
+        handleRemoveImage(id);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSaveImage = async (id) => {
@@ -72,6 +88,7 @@ const App = () => {
                 <ImageCard
                   image={image}
                   deleteImage={handleDeleteImage}
+                  removeImage={handleRemoveImage}
                   saveImage={handleSaveImage}
                 />
               </Col>

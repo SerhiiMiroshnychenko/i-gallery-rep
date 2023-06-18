@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
-const ImageCard = ({ image, deleteImage, saveImage }) => {
+const ImageCard = ({ image, deleteImage, removeImage, saveImage }) => {
   try {
     return (
       <Card style={{ width: '18rem' }}>
@@ -11,7 +11,11 @@ const ImageCard = ({ image, deleteImage, saveImage }) => {
           <Card.Text>{image.description || image.alt_description}</Card.Text>
           <Button
             variant={image.saved ? 'info' : 'warning'}
-            onClick={() => deleteImage(image.id)}
+            onClick={
+              image.saved
+                ? () => deleteImage(image.id)
+                : () => removeImage(image.id)
+            }
           >
             Видалити
           </Button>{' '}
@@ -30,7 +34,7 @@ const ImageCard = ({ image, deleteImage, saveImage }) => {
         <Card.Body>
           <Card.Title>ERROR</Card.Title>
           <Card.Text>Картинка не знайдена</Card.Text>
-          <Button variant="danger" onClick={() => deleteImage(image.id)}>
+          <Button variant="danger" onClick={() => removeImage(image.id)}>
             Видалити
           </Button>
         </Card.Body>
