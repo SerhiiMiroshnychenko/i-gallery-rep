@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
-const ImageCard = ({ image, deleteImage }) => {
+const ImageCard = ({ image, deleteImage, saveImage }) => {
   try {
     return (
       <Card style={{ width: '18rem' }}>
@@ -9,9 +9,17 @@ const ImageCard = ({ image, deleteImage }) => {
         <Card.Body>
           <Card.Title>{image.title?.toUpperCase()}</Card.Title>
           <Card.Text>{image.description || image.alt_description}</Card.Text>
-          <Button variant="primary" onClick={() => deleteImage(image.id)}>
-            Delete
-          </Button>
+          <Button
+            variant={image.saved ? 'info' : 'warning'}
+            onClick={() => deleteImage(image.id)}
+          >
+            Видалити
+          </Button>{' '}
+          {!image.saved && (
+            <Button variant="primary" onClick={() => saveImage(image.id)}>
+              Зберегти
+            </Button>
+          )}
         </Card.Body>
       </Card>
     );
@@ -22,8 +30,8 @@ const ImageCard = ({ image, deleteImage }) => {
         <Card.Body>
           <Card.Title>ERROR</Card.Title>
           <Card.Text>Картинка не знайдена</Card.Text>
-          <Button variant="warning" onClick={() => deleteImage(image.id)}>
-            Delete
+          <Button variant="danger" onClick={() => deleteImage(image.id)}>
+            Видалити
           </Button>
         </Card.Body>
       </Card>
