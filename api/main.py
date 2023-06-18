@@ -57,7 +57,6 @@ def new_image():
         params=params,
         timeout=5)
 
-    print(f'{word = }')
     result = response.json()
 
     return result if result != {'errors': ['No photos found.']} else {}
@@ -80,6 +79,23 @@ def images():
         result = images_collection.insert_one(image)
         inserted_id = result.inserted_id
         return {'inserted_id': inserted_id}
+
+
+@app.route('/images/<image_id>', methods=['DELETE'])
+def remove_image(image_id):
+    """
+    Action with the specified image from the database
+    """
+    if not images_collection.find_one({'_id': image_id}):
+        return {'message': 'Image not found'}, 404
+    # Delete the image from the database
+    if request.method == 'DELETE':
+        result = images_collection.delete_one({'_id': image_id})
+        return (
+            {'deleted_id': image_id}
+            if result.deleted_count > 0
+            else ({'message': 'Image deletion failed'}, 500)
+        )
 
 
 def main():
