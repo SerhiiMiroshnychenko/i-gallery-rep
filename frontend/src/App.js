@@ -44,13 +44,8 @@ const App = () => {
   };
 
   const handleDeleteImage = async (id) => {
-    const imageToBeDeleted = images.filter((image) => image.id === id);
-    imageToBeDeleted.deleted = true;
     try {
-      const result = await axios.delete(
-        `${API_URL}/images/${id}`,
-        imageToBeDeleted
-      );
+      const result = await axios.delete(`${API_URL}/images/${id}`);
       if (result.data?.deleted_id) {
         handleRemoveImage(id);
       }
